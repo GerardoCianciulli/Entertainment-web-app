@@ -1,0 +1,1 @@
+import{d as e,l as t,p as n,u as r}from"./api-CCSFc47I.js";import{t as i}from"./CategoryPage-CdBeq0YC.js";var a=n(e(),1),o=r(),s=t();(0,o.createRoot)(document.getElementById(`root`)).render((0,s.jsx)(a.StrictMode,{children:(0,s.jsx)(i,{category:`Movie`})}));
