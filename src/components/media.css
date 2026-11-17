@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.media-section + .media-section {
+  margin-top: 2.5rem;
+}
+
+.media-section__title {
+  margin-bottom: 2rem;
+}
+
+.media-section--trending .media-section__title {
+  margin-bottom: 1.5625rem;
+}
+
+.media-section--page .media-section__title {
+  margin-bottom: 2.375rem;
+}
+
+.media-section__empty {
+  color: var(--color-white-75);
+}
+
+/* ==========================================================================
+   Grid of regular cards
+   ========================================================================== */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr));
+  gap: 2rem 2.5rem;
+}
+
+/* ==========================================================================
+   Thumbnail hover state: dark overlay + "Play" pill
+   ========================================================================== */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-black-50);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.play-overlay__pill {
+  display: flex;
+  align-items: center;
+  gap: 1.1875rem;
+  padding: 0.5625rem 1.5rem 0.5625rem 0.5625rem;
+  border-radius: 1.78125rem;
+  background-color: var(--color-white-25);
+  font-size: var(--fs-heading-xs);
+  font-weight: var(--fw-medium);
+  line-height: 1.4375rem;
+}
+
+.play-overlay__pill svg {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+@media (hover: hover) {
+  .media-card__thumb:hover .play-overlay,
+  .trending-card:hover .play-overlay {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Bookmark button: idle / hover / active (bookmarked)
+   ========================================================================== */
+.bookmark-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--color-dark-blue-50);
+  color: var(--color-white);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.bookmark-button svg {
+  width: 0.75rem;
+  height: 0.875rem;
+}
+
+@media (hover: hover) {
+  .bookmark-button:hover {
+    background-color: var(--color-white);
+    color: var(--color-dark-blue);
+  }
+}
+
+.bookmark-button:focus-visible {
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+  outline: none;
+}
+
+/* ==========================================================================
+   Meta line: year • category • rating
+   ========================================================================== */
+.media-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--color-white-75);
+  font-size: var(--fs-body-s);
+  line-height: 1rem;
+}
+
+.media-meta li {
+  display: flex;
+  align-items: center;
+}
+
+.media-meta li + li::before {
+  content: '';
+  flex: none;
+  width: 0.1875rem;
+  height: 0.1875rem;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  background-color: var(--color-white-50);
+}
+
+.media-meta__category svg {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.375rem;
+  color: var(--color-white);
+}
+
+.media-meta--trending {
+  font-size: var(--fs-body-m);
+  line-height: 1.1875rem;
+}
+
+/* ==========================================================================
+   Regular card
+   ========================================================================== */
+.media-card__thumb {
+  position: relative;
+  aspect-ratio: 280 / 174;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background-color: var(--color-semi-dark-blue);
+}
+
+.media-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-card__info {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 0.5rem;
+}
+
+.media-card__title {
+  margin-top: 0.3125rem;
+  font-size: var(--fs-heading-xs);
+  font-weight: var(--fw-medium);
+  line-height: 1.4375rem;
+}
+
+/* ==========================================================================
+   Trending carousel (bleeds off the right edge and scrolls sideways)
+   ========================================================================== */
+.trending {
+  margin-right: -2.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.trending::-webkit-scrollbar {
+  display: none;
+}
+
+.trending:focus-visible {
+  outline: none;
+}
+
+.trending.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.trending__list {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  padding-right: 2.25rem;
+}
+
+.trending-card {
+  position: relative;
+  width: 29.375rem;
+  height: 14.375rem;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background-color: var(--color-semi-dark-blue);
+}
+
+.trending-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bottom shade keeps the text readable on bright thumbnails */
+.trending-card__info {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  min-height: 6.25rem;
+  padding: 0 1.5rem 1.5rem;
+  background-image: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.75) 100%);
+}
+
+.trending-card__title {
+  margin-top: 0.1875rem;
+  font-size: var(--fs-heading-s);
+  font-weight: var(--fw-medium);
+  line-height: 1.875rem;
+}
+
+.trending-card .bookmark-button {
+  right: 1.5rem;
+}
+
+/* ==========================================================================
+   Desktop below 1280px: slightly tighter grid
+   ========================================================================== */
+@media (max-width: 79.9375rem) {
+  .media-grid {
+    column-gap: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Tablet
+   ========================================================================== */
+@media (max-width: 63.9375rem) {
+  .media-section + .media-section {
+    margin-top: 2.4375rem;
+  }
+
+  .media-section--page + .media-section--page {
+    margin-top: 3rem;
+  }
+
+  .media-section__title,
+  .media-section--page .media-section__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .media-section--trending .media-section__title {
+    margin-bottom: 1.5625rem;
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 1.8125rem;
+  }
+
+  .media-card__thumb {
+    aspect-ratio: 220 / 140;
+  }
+
+  .trending {
+    margin-right: -1.5rem;
+  }
+
+  .trending__list {
+    padding-right: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+@media (max-width: 47.9375rem) {
+  .media-section + .media-section,
+  .media-section--page + .media-section--page {
+    margin-top: 1.5rem;
+  }
+
+  .media-section--trending .media-section__title {
+    margin-bottom: 1rem;
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.9375rem;
+  }
+
+  .media-card__thumb {
+    aspect-ratio: 164 / 110;
+  }
+
+  .media-card__title {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
+
+  .media-meta {
+    font-size: 0.6875rem;
+    line-height: 0.875rem;
+  }
+
+  .media-meta li + li::before {
+    width: 0.125rem;
+    height: 0.125rem;
+    margin: 0 0.375rem;
+  }
+
+  .media-meta__category svg {
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-right: 0.25rem;
+  }
+
+  .media-meta--trending {
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+  }
+
+  .media-meta--trending li + li::before {
+    width: 0.1875rem;
+    height: 0.1875rem;
+    margin: 0 0.5rem;
+  }
+
+  .media-meta--trending .media-meta__category svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.375rem;
+  }
+
+  .bookmark-button,
+  .trending-card .bookmark-button {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .trending {
+    margin-right: -1rem;
+  }
+
+  .trending__list {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .trending-card {
+    width: 15rem;
+    height: 8.75rem;
+  }
+
+  .trending-card__info {
+    min-height: 4.375rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .trending-card__title {
+    margin-top: 0.25rem;
+    font-size: var(--fs-body-m);
+    line-height: 1.1875rem;
+  }
+}

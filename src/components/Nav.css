@@ -1,0 +1,143 @@
+/* Desktop: vertical bar fixed to the left */
+.nav {
+  position: sticky;
+  top: 2rem;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6rem;
+  height: calc(100vh - 4rem);
+  min-height: 30rem;
+  padding: 2.2125rem 0 2rem;
+  border-radius: var(--radius-panel);
+  background-color: var(--color-semi-dark-blue);
+}
+
+.nav__logo svg {
+  width: 2rem;
+  height: 1.6rem;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 4.6875rem;
+}
+
+.nav__link {
+  display: grid;
+  place-items: center;
+  color: var(--color-greyish-blue);
+  transition: color 0.2s ease;
+}
+
+.nav__link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.nav__link--bookmarked svg {
+  width: 1.0575rem;
+}
+
+/* Hover (red) and active (white) states from the design */
+@media (hover: hover) {
+  .nav__link:hover {
+    color: var(--color-red);
+  }
+}
+
+.nav__link:focus-visible {
+  color: var(--color-red);
+  outline: none;
+}
+
+.nav__link[aria-current='page'] {
+  color: var(--color-white);
+}
+
+.nav__avatar {
+  margin-top: auto;
+  border-radius: 50%;
+}
+
+.nav__avatar img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid var(--color-white);
+  border-radius: 50%;
+}
+
+/* Tablet: horizontal bar on top */
+@media (max-width: 63.9375rem) {
+  .nav {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    width: 100%;
+    height: 4.5rem;
+    min-height: 0;
+    padding: 0 1rem;
+    border-radius: 0.625rem;
+  }
+
+  .nav__logo {
+    justify-self: start;
+    margin-left: 0.5rem;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 0;
+  }
+
+  .nav__avatar {
+    justify-self: end;
+    margin-top: 0;
+  }
+
+  .nav__avatar img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Mobile: full-width bar */
+@media (max-width: 47.9375rem) {
+  .nav {
+    height: 3.5rem;
+    padding: 0 1rem;
+    border-radius: 0;
+  }
+
+  .nav__logo {
+    margin-left: 0;
+  }
+
+  .nav__logo svg {
+    width: 1.5625rem;
+    height: 1.25rem;
+  }
+
+  .nav__list {
+    gap: 1.5rem;
+  }
+
+  .nav__link svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .nav__link--bookmarked svg {
+    width: 0.84625rem;
+  }
+
+  .nav__avatar img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

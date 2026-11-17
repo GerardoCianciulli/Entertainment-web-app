@@ -1,0 +1,43 @@
+/* Desktop: sidebar on the left, content on the right */
+.app {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.25rem;
+  min-height: 100vh;
+  padding: 2rem 0 0 2rem;
+}
+
+.app__main {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem 2.25rem 3.25rem 0;
+}
+
+.app__status {
+  color: var(--color-white-75);
+}
+
+/* Tablet: navigation bar above the content */
+@media (max-width: 63.9375rem) {
+  .app {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1.4375rem 1.5rem 0;
+  }
+
+  .app__main {
+    padding: 2.0625rem 0 3.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 47.9375rem) {
+  .app {
+    padding: 0;
+  }
+
+  .app__main {
+    padding: 1.5rem 1rem 3.75rem;
+  }
+}
